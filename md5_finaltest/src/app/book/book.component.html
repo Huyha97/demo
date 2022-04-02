@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384
+  -EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.m
+  in.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+
+<div class="container" id="formCreateBook" >
+  <div >
+    <form class="box" [formGroup]="formBook" (ngSubmit)="createBook()" >
+      <table>
+        <tr>
+          <th colspan="2" id="head"><h1 >Create new book</h1></th>
+        </tr>
+        <tr>
+          <th><label for="title" class="form-label">Title:</label></th>
+          <td><input class="form-control" id="title" formControlName="title" type="text"></td>
+        </tr>
+        <tr>
+          <th><label for="author" class="form-label">author:</label></th>
+          <td><input class="form-control" id="author"  formControlName="author" type="text"></td>
+        </tr>
+        <tr>
+          <th><label for="description" class="form-label">description:</label></th>
+          <td><input class="form-control" id="description" formControlName="description" type="text"></td>
+        </tr>
+        <tr>
+          <td colspan="2" id="center">
+            <button type="submit" class="btn btn-primary" id="submit">Create</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <br>
+
+<!--  <div id="formEditBook" class="container" hidden>-->
+<!--    <form class="box" [formGroup]="formBookEdit" (ngSubmit)="editBook(idEdit)" >-->
+<!--      <table>-->
+<!--        <tr>-->
+<!--          <th colspan="2" ><h1 >Edit book</h1></th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <th><label for="title" class="form-label">Title:</label></th>-->
+<!--          <td><input class="form-control" id="title1" formControlName="title" type="text"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <th><label for="author" class="form-label">author:</label></th>-->
+<!--          <td><input class="form-control" id="author1"  formControlName="author" type="text"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <th><label for="description" class="form-label">description:</label></th>-->
+<!--          <td><input class="form-control" id="description1" formControlName="description" type="text"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td colspan="2" id="center1">-->
+<!--            <button type="submit" class="btn btn-primary" id="submit1">update</button>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </form>-->
+<!--  </div>-->
+
+  <button (click)="showCreateForm()">Create</button>
+
+  <h1 (click)="getAllBook()">List Books</h1>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>author</th>
+      <th>description</th>
+      <th>Delete</th>
+      <th>Edit</th>
+      <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of books,let i = index" >
+      <td >
+        <ins>{{c.id}}</ins>
+      </td>
+      <td (click)="getBook(c.id)">
+        {{c.title}}
+      </td>
+      <td>{{c.author}}</td>
+      <td>{{c.description}}</td>
+      <td (click)="deleteBook(c.id, c.title)"><button type="button" class="btn btn-danger">Delete</button></td>
+      <td (click)="Edit(c.id)"><button type="button" class="btn btn-warning">Edit</button></td>
+      <td (click)="getBook(c.id)"><button type="button" class="btn btn-info">Info</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>
